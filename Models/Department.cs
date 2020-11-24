@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sales_ASPNET_Core.Models
 {
     public class Department
     {
-        public Department()
-        {
-        }
+        private ICollection<Seller> _sellers = new List<Seller>();
+
+        public Department() { }
 
         public Department(int id, string name)
         {
@@ -19,5 +18,15 @@ namespace Sales_ASPNET_Core.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public void AddSeller(Seller seller)
+        {
+            _sellers.Add(seller);
+        }
+
+        public double TotalSales(DateTime initial, DateTime final)
+        {
+            return _sellers.Sum(seller => seller.TotalSales(initial, final));
+        }
     }
 }
