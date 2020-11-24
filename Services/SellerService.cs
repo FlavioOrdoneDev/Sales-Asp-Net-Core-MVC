@@ -20,5 +20,12 @@ namespace Sales_ASPNET_Core.Services
         {
             return _context.Seller.ToList();
         }
+
+        public void Insert(Seller seller)
+        {
+            seller.Department = _context.Department.First();
+            _context.Add(seller);
+            _context.SaveChanges();
+        }
     }
 }

@@ -25,9 +25,8 @@ namespace Sales_ASPNET_Core.Models
         public DateTime BirthDay { get; set; }
         public double BaseSalary { get; set; }
 
-        //public int DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
-
         
 
         public void AddSales(SalesRecord salesRecord)
