@@ -10,9 +10,8 @@ namespace Sales_ASPNET_Core.Models
 
         public Seller() { }
 
-        public Seller(int id, string name, string email, DateTime birthDay, double baseSalary, Department department)
+        public Seller(string name, string email, DateTime birthDay, double baseSalary, Department department)
         {
-            Id = id;
             Name = name;
             Email = email;
             BirthDay = birthDay;

@@ -7,9 +7,8 @@ namespace Sales_ASPNET_Core.Models
     {
         public SalesRecord() { }
 
-        public SalesRecord(int id, DateTime date, int amount, SaleStatus status, Seller seller)
+        public SalesRecord(DateTime date, double amount, SaleStatus status, Seller seller)
         {
-            Id = id;
             Date = date;
             Amount = amount;
             Status = status;
@@ -18,7 +17,7 @@ namespace Sales_ASPNET_Core.Models
 
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public int Amount { get; set; }
+        public double Amount { get; set; }
         public SaleStatus Status { get; set; }
 
         public Seller Seller { get; set; }
