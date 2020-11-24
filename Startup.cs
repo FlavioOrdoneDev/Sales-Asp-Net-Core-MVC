@@ -28,7 +28,7 @@ namespace Sales_ASPNET_Core
             services.AddControllersWithViews();
 
             services.AddDbContext<SalesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SalesContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("ConexaoBancoDados")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

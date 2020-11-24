@@ -14,6 +14,6 @@ namespace Sales_ASPNET_Core.Data
         {
         }
 
-        public DbSet<Sales_ASPNET_Core.Models.Department> Department { get; set; }
+        public DbSet<Department> Department { get; set; }
     }
 }
