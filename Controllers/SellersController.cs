@@ -4,36 +4,41 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Sales_ASPNET_Core.Models;
+using Sales_ASPNET_Core.Models.ViewModels;
 using Sales_ASPNET_Core.Services;
 
 namespace Sales_ASPNET_Core.Controllers
 {
     public class SellersController : Controller
     {
-        private readonly SellerService _service;
+        private readonly SellerService _sellerService;
+        private readonly DepartmentService _departmentService;
 
-        public SellersController(SellerService service)
+        public SellersController(SellerService sellerService, DepartmentService departmentService)
         {
-            _service = service;
+            _sellerService = sellerService;
+            _departmentService = departmentService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_service.FindAll());
+            return View(_sellerService.FindAll());
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel { Departments = departments};
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
-            _service.Insert(seller);
+            _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
     }

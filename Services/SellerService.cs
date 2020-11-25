@@ -1,9 +1,8 @@
-﻿using Sales_ASPNET_Core.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Sales_ASPNET_Core.Data;
 using Sales_ASPNET_Core.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sales_ASPNET_Core.Services
 {
@@ -18,12 +17,11 @@ namespace Sales_ASPNET_Core.Services
 
         public List<Seller> FindAll()
         {
-            return _context.Seller.ToList();
+            return _context.Seller.Include(x => x.Department).ToList();
         }
 
         public void Insert(Seller seller)
         {
-            seller.Department = _context.Department.First();
             _context.Add(seller);
             _context.SaveChanges();
         }
