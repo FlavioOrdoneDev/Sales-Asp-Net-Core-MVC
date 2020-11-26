@@ -30,7 +30,7 @@ namespace Sales_ASPNET_Core.Services
 
         public async Task<Seller> FindByIdAsync(int id)
         {
-            return await _context.Seller.Include(x => x.Department).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Seller.Include(x => x.Department).Include(x => x.SalesRecord).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task UpdateAsync(Seller obj)

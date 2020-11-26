@@ -49,6 +49,11 @@ namespace Sales_ASPNET_Core.Models
             SalesRecord.Remove(salesRecord);
         }
 
+        public double TotalSales()
+        {
+            return SalesRecord.Sum(x => x.Amount);
+        }
+
         public double TotalSales(DateTime initial, DateTime final)
         {
             return SalesRecord.Where(x => x.Date >= initial && x.Date <= final).Sum(x => x.Amount);
