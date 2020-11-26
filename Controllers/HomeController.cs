@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Sales_ASPNET_Core.Models;
+using Sales_ASPNET_Core.Models.ViewModels;
 
 namespace Sales_ASPNET_Core.Controllers
 {
