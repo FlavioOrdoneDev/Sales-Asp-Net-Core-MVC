@@ -1,6 +1,7 @@
 ﻿using Sales_ASPNET_Core.Data;
 using Sales_ASPNET_Core.Models;
 using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,15 +17,15 @@ namespace Sales_ASPNET_Core.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return await _context.Department.OrderBy(x => x.Name).ToListAsync();
         }
 
-        public void Insert(Department department)
+        public async Task InsertAsync(Department department)
         {
             _context.Add(department);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
