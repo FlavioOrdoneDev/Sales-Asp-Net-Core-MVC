@@ -6,7 +6,7 @@ namespace Sales_ASPNET_Core.Models
 {
     public class Department
     {
-        private ICollection<Seller> _sellers = new List<Seller>();
+        public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 
         public Department() { }
 
@@ -20,12 +20,12 @@ namespace Sales_ASPNET_Core.Models
 
         public void AddSeller(Seller seller)
         {
-            _sellers.Add(seller);
+            Sellers.Add(seller);
         }
 
         public double TotalSales(DateTime initial, DateTime final)
         {
-            return _sellers.Sum(seller => seller.TotalSales(initial, final));
+            return Sellers.Sum(seller => seller.TotalSales(initial, final));
         }
     }
 }

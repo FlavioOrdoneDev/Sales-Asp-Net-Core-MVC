@@ -32,5 +32,24 @@ namespace Sales_ASPNET_Core.Services
                         .OrderByDescending(x => x.Date)
                         .ToListAsync();
         }
+
+        public List<IGrouping<Department, SalesRecord>> FindByDateGrouping(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.SalesRecord select obj;
+
+            if (minDate.HasValue)
+                result = result.Where(x => x.Date >= minDate.Value);
+            if (maxDate.HasValue)
+                result = result.Where(x => x.Date <= maxDate.Value);
+
+            var teste = result
+                        .Include(x => x.Seller)
+                        .Include(x => x.Seller.Department).ToList()
+                        .OrderByDescending(x => x.Date)
+                        .GroupBy(x => x.Seller.Department);
+
+            return teste.ToList();
+
+        }
     }
 }

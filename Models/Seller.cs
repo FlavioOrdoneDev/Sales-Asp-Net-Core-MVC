@@ -7,7 +7,7 @@ namespace Sales_ASPNET_Core.Models
 {
     public class Seller
     {
-        private ICollection<SalesRecord> _salesRecord = new List<SalesRecord>();
+        public ICollection<SalesRecord> SalesRecord { get; set; } = new List<SalesRecord>();
 
         public Seller() { }
 
@@ -41,17 +41,17 @@ namespace Sales_ASPNET_Core.Models
 
         public void AddSales(SalesRecord salesRecord)
         {
-            _salesRecord.Add(salesRecord);
+            SalesRecord.Add(salesRecord);
         }
 
         public void RemoveSales(SalesRecord salesRecord)
         {
-            _salesRecord.Remove(salesRecord);
+            SalesRecord.Remove(salesRecord);
         }
 
         public double TotalSales(DateTime initial, DateTime final)
         {
-            return _salesRecord.Where(x => x.Date >= initial && x.Date <= final).Sum(x => x.Amount);
+            return SalesRecord.Where(x => x.Date >= initial && x.Date <= final).Sum(x => x.Amount);
         }
     }
 }
